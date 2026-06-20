@@ -1,0 +1,143 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "CXX=g++",
+                "debug"
+            ],
+            "windows": {
+                "command": "C:/msys64/ucrt64/bin/mingw32-make.exe",
+                "args": [
+                    "CXX=C:/msys64/ucrt64/bin/g++.exe",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/bin;${env:PATH}"
+                    }
+                }
+            },
+            "linux": {
+                "command": "make",
+                "args": [
+                    "CXX=g++",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "CXX=g++",
+                "release"
+            ],
+            "windows": {
+                "command": "C:/msys64/ucrt64/bin/mingw32-make.exe",
+                "args": [
+                    "CXX=C:/msys64/ucrt64/bin/g++.exe",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/bin;${env:PATH}"
+                    }
+                }
+            },
+            "linux": {
+                "command": "make",
+                "args": [
+                    "CXX=g++",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Run Debug",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/debug/diff",
+            "args": [],
+            "windows": {
+                "command": "${workspaceFolder}/build/debug/diff.exe",
+                "args": [],
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/bin;${env:PATH}"
+                    }
+                }
+            },
+            "linux": {
+                "command": "${workspaceFolder}/build/debug/diff",
+                "args": [],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "Build Debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+            "windows": {
+                "command": "C:/msys64/ucrt64/bin/mingw32-make.exe",
+                "args": [
+                    "clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "C:/msys64/ucrt64/bin;C:/msys64/usr/bin;${env:PATH}"
+                    }
+                }
+            },
+            "linux": {
+                "command": "make",
+                "args": [
+                    "clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
