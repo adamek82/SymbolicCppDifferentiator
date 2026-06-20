@@ -21,7 +21,7 @@ static bool isNumber(const Expr* e, double* out=nullptr){
 }
 
 ExprPtr differentiate(const Expr* e, const std::string& dx){
-    if(auto n=dynamic_cast<const Num*>(e)) return num(0);
+    if(dynamic_cast<const Num*>(e)) return num(0);
     if(auto v=dynamic_cast<const Var*>(e)) return num(v->name==dx ? 1.0 : 0.0);
 
     if(auto u=dynamic_cast<const Unary*>(e)){

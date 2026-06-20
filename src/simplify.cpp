@@ -22,13 +22,13 @@ static ExprPtr simplifyBin(char op, ExprPtr L, ExprPtr R){
 
     if(op=='+'){
         if(isNumber(L.get(), &a) && isNumber(R.get(), &b)) return num(a+b);
-        if(isNumber(L.get(), &a) && a==0) return std::move(R);
-        if(isNumber(R.get(), &b) && b==0) return std::move(L);
+        if(isNumber(L.get(), &a) && a==0) return R;
+        if(isNumber(R.get(), &b) && b==0) return L;
         return std::make_unique<Bin>(op, std::move(L), std::move(R));
     }
     if(op=='-'){
         if(isNumber(L.get(), &a) && isNumber(R.get(), &b)) return num(a-b);
-        if(isNumber(R.get(), &b) && b==0) return std::move(L);
+        if(isNumber(R.get(), &b) && b==0) return L;
         if(isNumber(L.get(), &a) && a==0) return std::make_unique<Unary>('-', std::move(R));
         return std::make_unique<Bin>(op, std::move(L), std::move(R));
     }
@@ -36,8 +36,8 @@ static ExprPtr simplifyBin(char op, ExprPtr L, ExprPtr R){
         if(isNumber(L.get(), &a) && isNumber(R.get(), &b)) return num(a*b);
         if(isNumber(L.get(), &a) && a==0) return num(0);
         if(isNumber(R.get(), &b) && b==0) return num(0);
-        if(isNumber(L.get(), &a) && a==1) return std::move(R);
-        if(isNumber(R.get(), &b) && b==1) return std::move(L);
+        if(isNumber(L.get(), &a) && a==1) return R;
+        if(isNumber(R.get(), &b) && b==1) return L;
         if(isNumber(L.get(), &a) && a==-1) return std::make_unique<Unary>('-', std::move(R));
         if(isNumber(R.get(), &b) && b==-1) return std::make_unique<Unary>('-', std::move(L));
 
@@ -53,7 +53,7 @@ static ExprPtr simplifyBin(char op, ExprPtr L, ExprPtr R){
     if(op=='/'){
         if(isNumber(L.get(), &a) && isNumber(R.get(), &b)) return num(a/b);
         if(isNumber(L.get(), &a) && a==0) return num(0);
-        if(isNumber(R.get(), &b) && b==1) return std::move(L);
+        if(isNumber(R.get(), &b) && b==1) return L;
 
         // y / y -> 1
         if(sameVar(L.get(), R.get())) return num(1);
@@ -107,7 +107,7 @@ static ExprPtr simplifyPow(ExprPtr B, ExprPtr E){
     double a,b;
     if(isNumber(E.get(), &b)){
         if(b==0) return num(1);
-        if(b==1) return std::move(B);
+        if(b==1) return B;
         if(b<0)  // u^(-n) -> 1/(u^n)
             return simplifyRec( divv(num(1), poww(std::move(B), num(-b))) );
     }
