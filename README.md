@@ -4,6 +4,12 @@ A small C++ symbolic differentiator implemented with a recursive-descent parser.
 
 The program parses mathematical expressions into an AST, differentiates them symbolically, and applies basic simplification rules.
 
+## Documentation
+
+- [Design document](docs/design.md)
+
+The design document explains the high-level architecture of the project and describes the role of each module.
+
 ## Supported features
 
 - variables and numeric constants
@@ -65,6 +71,8 @@ SymbolicCppDifferentiator/
     diff.cpp
     simplify.cpp
     print.cpp
+  docs/
+    design.md
   .vscode/
     c_cpp_properties.windows.example.json
     c_cpp_properties.linux.example.json
