@@ -11,7 +11,7 @@ namespace sym {
 
 class Printer {
 public:
-    std::string print(const Expr* e, int prec=0) const;
+    std::string print(const Expr* e, int prec = 0) const;
 };
 
 } // namespace sym

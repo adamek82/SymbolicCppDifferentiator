@@ -13,21 +13,22 @@
  * - prints normalized input, raw derivative, and simplified derivative
  */
 
-int main(){
+int main() {
     using namespace sym;
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
     std::cout << "Differentiate with respect to (e.g., x): " << std::flush;
     std::string dx;
-    if (!(std::cin >> dx)) return 0;
+    if (!(std::cin >> dx))
+        return 0;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Enter expression: " << std::flush;
     std::string line;
     std::getline(std::cin, line);
 
-    try{
+    try {
         Parser P(line);
         auto ast = P.parse();
 
@@ -39,8 +40,7 @@ int main(){
 
         auto s = simplify(std::move(d));
         std::cout << "Simplified: " << pr.print(s.get()) << "\n";
-    }
-    catch(const std::exception& ex){
+    } catch (const std::exception& ex) {
         std::cerr << "Error: " << ex.what() << "\n";
         return 1;
     }

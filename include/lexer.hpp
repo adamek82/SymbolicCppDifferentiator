@@ -8,12 +8,7 @@
 
 namespace sym {
 
-enum class TokKind {
-    End, Num, Id,
-    Plus, Minus, Star, Slash, Caret,
-    LParen, RParen, Comma,
-    Func
-};
+enum class TokKind { End, Num, Id, Plus, Minus, Star, Slash, Caret, LParen, RParen, Comma, Func };
 
 struct Token {
     TokKind kind{};
