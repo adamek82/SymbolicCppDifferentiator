@@ -9,6 +9,18 @@ SRC := \
 	src/simplify.cpp \
 	src/print.cpp
 
+HDR := \
+	include/ast.hpp \
+	include/lexer.hpp \
+	include/parser.hpp \
+	include/diff.hpp \
+	include/simplify.hpp \
+	include/print.hpp
+
+FORMAT_FILES := $(SRC) $(HDR)
+
+CLANG_FORMAT ?= clang-format
+
 INCLUDES := -Iinclude
 
 COMMON_FLAGS := -std=c++20 -Wall -Wextra -pedantic $(INCLUDES)
@@ -46,3 +58,9 @@ run: debug
 
 clean:
 	rm -rf build
+
+format:
+	$(CLANG_FORMAT) -i $(FORMAT_FILES)
+
+format-check:
+	$(CLANG_FORMAT) --dry-run --Werror $(FORMAT_FILES)
